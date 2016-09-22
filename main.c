@@ -1,225 +1,110 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-bool esprimo(int a)
+char convert (char *c)
+{
+    if (*c<='Z'&&*c>='A')
+        return *c -'A'+'a';
+    else
+        return *c;
+}
+void strcat(char *s,char *t)
+{
+    while(*s!='\0')
+        s++;
 
+    while((*s++=*t++)!='\0')
+    ;
+}
+
+int mylen (char *s)
+{
+    int i=0;
+    while (*s!='\0')
+    {
+        s++;
+        ++i;
+    }
+    if (*s=='\0')
+        ++i;
+    return i;
+}
+
+int strend(char *s,char *t)
+{
+    int len;
+    len=mylen(t);
+    while(*s!='\0')
+        ++s;
+    while(*t!='\0')
+        ++t;
+    while(len > 0)
+    {
+        if(*t==*s)
+        {
+            --t;
+            --s;
+            --len;
+        }
+        else
+            return 0;
+    }
+    if( len == 0)
+        return 1;
+}
+
+void strncat (char *s, char *t, int n)
+{
+    while (*s!='\0')
+    {
+        s++;
+    }
+    while ( n-->0)
+        *s++=*t++;
+    *s='\0';
+
+}
+
+void strncopy (char*to,char *from,int n)
 {
 
-	int i, b=0;
-    if (a==2)
+    while(*from && n-->0)
+    {
+        *to++=*from++;
+    }
 
-		return true;
+    *to='\0';
+}
 
-	for (i=1; i <= a; i++)
-	{
-
-		if (a%i == 0)
-
-			b+=1;
-	}
-
-	if (b > 2)
-
-		return false;
-
-	else
-
-		return true;
+int strncmp (char *s,char *t , int n)
+{
+    for(; *s == *t; s++,t++)
+        if( *s == '\0' || --n <=0)
+            return 0;
+    return *s - *t;
 }
 
 int main()
 {
-    //ejercicio 1:
-    printf("ingrese su nombre \n");
+    char test[15];
+    char s[15] = {'a','s', 'd','a','r','\0'};
+    char t[15] = {'1','2','3','.','4','5','e','-','6','\0'};
+    strcat(s,t);
+    printf("%d \n",strend(s,t));
 
-    scanf("%s", &a);
+    char c='B';
+    char *q;
+    q=&c;
+    printf("%c \n",convert(q));
 
-    for(i=1; i<=10; i++)
+    strncopy(test,t,5);
+    strncat(t,s,3);
 
-        printf("%s\n",a);
-    //ejercicio 2:
-    int ce=0,ct=0,csl=0;
+    printf("%d \n",strncmp(s,t,6));
+    printf("%s \n",test);
+    printf("%s \n",s);
+    printf("%s \n",t);
 
-    printf("presione los botones \n");
-
-    while((b=getchar())!= EOF)
-
-    {
-
-        if (b==' ')
-
-            ce+=1;
-
-        else if ( b == '\t')
-
-            ct+=1;
-
-        else if ( b == '\n')
-
-            csl+=1;
-    }
-
-    printf ("la cantidad de espacios en blanco es: %d\n", ce);
-
-    printf ("la cantidad de tabuladores  es: %d\n", ct);
-
-    printf ("la cantidad de saltos de linea es %d\n", csl);
-    //ejercicio 3
-
-    int numero;
-
-    printf("ingrese un numero que termine en cero no nulo: ")
-
-    scanf("%d",&numero);
-
-    if (numero>0 && numero%10==0)
-
-        printf(numero*numero)
-    //ejercicio 4
-    int c=0;
-
-    printf("ingresa un numero \n");
-
-    scanf("%d", &n);
-
-    for(j=1; j<=n ; j++)
-
-        c+=i;
-
-    printf("la suma los n primero numeros es %d ",c);
-
-    //ejercicio 5
-    int s=0
-    printf("ingresa un numero \n");
-    scanf("%d", &n1);
-
-    if (esprimo(h)== true)
-       for(h=1; h<=n1 ; h++)
-            s+=h;
-
-    printf("la suma los n primeros numeros primos es %d ",s);
-
-    //ejercicio 6
-
-    int o,x,z=1;
-
-    printf("ingrea la potencia \n");
-
-    scanf("%d", &o);
-
-    printf("ingrea la base \n");
-
-    scanf("%d", &x);
-
-    for (l=1; l<=o ; l++)
-
-        z *= x;
-    printf("el resultado es %d a es %d\n", z);
-
-    //ejercicio 7
-    int e,i,f=1;
-
-    printf("ingrese el numero factorial \n");
-
-    scanf("%d", &e);
-
-    for (i=1; i<=r ; i++)
-
-        f*=i;
-
-	printf("el resultado es %d ",f);
 
     return 0;
-    // ejercicio 8
-    printf("ingrese los numeros ",f);
-    int n1,n2,n3,mayor,medio,menor;
-    scanf("%d", &n1);
-    scanf("%d", &n2);
-    scanf("%d", &n3);
-    if (n1 > n2)
-    {
-        if (n1<n3)
-        {
-
-            mayor=n3;
-            medio=n1;
-            menor=n2;
-        }
-        else if (n3<n2)
-        {
-
-            mayor=n1;
-            medio=n2;
-            menor=n3;
-        }
-        else
-        {
-
-            mayor=n1;
-            medio=n3;
-            menor=n2;
-        }
-    }
-
-
-    else if (n2<n3)
-    {
-        menor=n1;
-        medio=n2;
-        mayor=n3;
-    }
-    else
-    {
-        mayor=n2;
-        if (n1>n3)
-            medio=n1;
-            menor=n3;
-        else
-            medio=n3;
-            menor=n1;
-    }
-
-    printf(menor,medio,mayor) ;
-    // ejercicio 9
-    int p,q,t,u,md=1,cociente;
-    printf("ingrese los numeros \n");
-    scanf("%d", &p);
-    scanf("%d", &q);
-    scanf("%d", &t);
-    scanf("%d", &u);
-    while (cociente!=1)
-    {
-        for (r=2,r<=(p+q+t+u),r++){
-        if(esprimo(r)){
-
-        if((p+q+t+u)%r==0)
-     {
-
-            md=md*r;
-            p=p/r;
-            q=q/r:
-            t=t/r;
-            u=u/r;
-            if(p%r==0 && q%r==0 && t%r==0 && u%r==0)
-                cociente=1;
-    }
-    }}
-    printf("el mcd es ",md);
-    scanf("%d", &k);
-    //ejercicio 10
-    printf("escriba un numero: ");
-    int k;
-    float hk;
-    for(lm=0,lm<k,lm++)
-        hk=hk+(1/lm)
-
 }
-
-
-
-
-
-
-
-
-
