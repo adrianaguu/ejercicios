@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char convert (char *c)
+char convert (char *c) //ejercicio 1
 {
     if (*c<='Z'&&*c>='A')
         return *c -'A'+'a';
     else
         return *c;
 }
-void strcat(char *s,char *t)
+void strcat(char *s,char *t) 
 {
     while(*s!='\0')
         s++;
@@ -89,19 +89,19 @@ int main()
     char test[15];
     char s[15] = {'a','s', 'd','a','r','\0'};
     char t[15] = {'1','2','3','.','4','5','e','-','6','\0'};
-    strcat(s,t);
-    printf("%d \n",strend(s,t));
+    strcat(s,t); //concatena t a s
+    printf("%d \n",strend(s,t)); //prueba si t esta al final de s
 
     char c='B';
     char *q;
     q=&c;
-    printf("%c \n",convert(q));
+    printf("%c \n",convert(q)); //concvierte mayuscula a minuscula
 
-    strncopy(test,t,5);
-    strncat(t,s,3);
+    strncopy(test,t,5); //copia a los 5 primeros elementos de t a test
+    strncat(t,s,3); // copia los 3 primeros elementos de s al final de t
 
-    printf("%d \n",strncmp(s,t,6));
-    printf("%s \n",test);
+    printf("%d \n",strncmp(s,t,6)); // compara que cadena es mayor
+    printf("%s \n",test); 
     printf("%s \n",s);
     printf("%s \n",t);
 
